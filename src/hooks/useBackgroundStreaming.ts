@@ -48,11 +48,11 @@ export const useBackgroundStreaming = ({
       }
 
       // Request frame if available (Chrome-specific optimization)
-      if (
-        "requestFrame" in videoTrack &&
-        typeof (videoTrack as any).requestFrame === "function"
-      ) {
-        (videoTrack as any).requestFrame();
+      // Request frame if available (Chrome-specific optimization)
+      type RequestFrameTrack = MediaStreamTrack & { requestFrame?: () => void };
+      const rfTrack = videoTrack as RequestFrameTrack;
+      if (typeof rfTrack.requestFrame === "function") {
+        rfTrack.requestFrame();
       }
     }, 1000 / fps);
   }, [enabled, canvas, stream, onBackgroundFrame, fps]);
