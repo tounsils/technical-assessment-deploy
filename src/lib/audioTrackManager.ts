@@ -49,8 +49,8 @@ class AudioTrackManager {
       }
 
       return this.silentTrack.clone();
-    } catch (error) {
-      console.warn("Failed to create silent audio track:", error);
+    } catch (_error) {
+      console.warn("Failed to create silent audio track:", _error);
       // Return a dummy track as fallback
       return new MediaStreamTrack();
     }
@@ -61,7 +61,7 @@ class AudioTrackManager {
       try {
         this.oscillator.stop();
         this.oscillator.disconnect();
-      } catch (error) {
+      } catch (_error) {
         // Oscillator might already be stopped
       }
       this.oscillator = null;

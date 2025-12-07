@@ -29,6 +29,7 @@ class StreamStabilizer {
   ): Promise<StreamStabilizationResult> {
     const {
       minStableFrames = 5,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       timeoutMs = 3000,
       validateAudio = true,
     } = options;
@@ -113,7 +114,7 @@ class StreamStabilizer {
       // Check if canvas has any content
       const imageData = ctx.getImageData(0, 0, 1, 1);
       return imageData.data.some(value => value > 0);
-    } catch (error) {
+    } catch (_error) {
       return false;
     }
   }
