@@ -141,7 +141,7 @@ export const DrawingCanvas: React.FC<DrawingCanvasProps> = ({
     ctx.fillRect(canvas.width - 1, canvas.height - 1, 1, 1);
   }, []);
 
-  useBackgroundStreaming({
+  const { isBackgroundStreaming } = useBackgroundStreaming({
     onBackgroundFrame: renderBackgroundFrame,
     fps,
     enabled: enableStreaming && enableBackgroundStreaming,
